@@ -1,0 +1,221 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─── Ceará Color Palette ─────────────────────────────────────────────────── */
+:root {
+  /* Brand */
+  --ceara-green: oklch(0.42 0.15 152);
+  --ceara-green-light: oklch(0.55 0.14 152);
+  --ceara-green-muted: oklch(0.42 0.15 152 / 0.12);
+  --ceara-blue: oklch(0.45 0.18 240);
+  --ceara-blue-light: oklch(0.58 0.17 240);
+  --ceara-blue-muted: oklch(0.45 0.18 240 / 0.12);
+  --ceara-yellow: oklch(0.85 0.18 90);
+  --ceara-yellow-muted: oklch(0.85 0.18 90 / 0.15);
+
+  /* Neutrals */
+  --neutral-50: oklch(0.99 0 0);
+  --neutral-100: oklch(0.97 0.003 240);
+  --neutral-200: oklch(0.92 0.006 240);
+  --neutral-400: oklch(0.65 0.012 240);
+  --neutral-600: oklch(0.45 0.015 240);
+  --neutral-900: oklch(0.10 0.015 240);
+
+  /* Semantic tokens */
+  --background: oklch(0.97 0.003 240);
+  --foreground: oklch(0.10 0.015 240);
+  --card: oklch(1 0 0 / 0.8);
+  --card-foreground: oklch(0.10 0.015 240);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.10 0.015 240);
+  --primary: oklch(0.42 0.15 152);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.92 0.006 240);
+  --secondary-foreground: oklch(0.10 0.015 240);
+  --muted: oklch(0.94 0.004 240);
+  --muted-foreground: oklch(0.55 0.012 240);
+  --accent: oklch(0.45 0.18 240);
+  --accent-foreground: oklch(0.99 0 0);
+  --destructive: oklch(0.55 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.90 0.006 240);
+  --input: oklch(0.90 0.006 240);
+  --ring: oklch(0.42 0.15 152);
+  --radius: 0.75rem;
+
+  /* Sidebar */
+  --sidebar: oklch(0.10 0.015 240);
+  --sidebar-foreground: oklch(0.92 0.006 240);
+  --sidebar-primary: oklch(0.55 0.14 152);
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: oklch(0.18 0.015 240);
+  --sidebar-accent-foreground: oklch(0.92 0.006 240);
+  --sidebar-border: oklch(0.20 0.015 240);
+  --sidebar-ring: oklch(0.42 0.15 152);
+
+  /* Glass */
+  --glass-bg: oklch(1 0 0 / 0.65);
+  --glass-border: oklch(1 0 0 / 0.35);
+  --glass-shadow: 0 4px 24px oklch(0.10 0.015 240 / 0.08), 0 1px 4px oklch(0.10 0.015 240 / 0.06);
+  --glass-shadow-lg: 0 8px 40px oklch(0.10 0.015 240 / 0.12), 0 2px 8px oklch(0.10 0.015 240 / 0.08);
+
+  /* Easing */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  .flex {
+    min-width: 0;
+    min-height: 0;
+  }
+}
+
+/* ─── Glass Card ─────────────────────────────────────────────────────────── */
+.glass-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius);
+}
+
+.glass-card-lg {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow-lg);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: calc(var(--radius) + 4px);
+}
+
+/* ─── Gradient backgrounds ───────────────────────────────────────────────── */
+.gradient-green {
+  background: linear-gradient(135deg, oklch(0.42 0.15 152), oklch(0.55 0.14 152));
+}
+.gradient-blue {
+  background: linear-gradient(135deg, oklch(0.45 0.18 240), oklch(0.58 0.17 240));
+}
+.gradient-yellow {
+  background: linear-gradient(135deg, oklch(0.78 0.18 90), oklch(0.88 0.16 85));
+}
+.gradient-red {
+  background: linear-gradient(135deg, oklch(0.52 0.22 25), oklch(0.62 0.20 25));
+}
+.gradient-mesh {
+  background:
+    radial-gradient(ellipse at 20% 20%, oklch(0.42 0.15 152 / 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 80%, oklch(0.45 0.18 240 / 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, oklch(0.85 0.18 90 / 0.04) 0%, transparent 60%),
+    var(--background);
+}
+
+/* ─── Sidebar ─────────────────────────────────────────────────────────────── */
+.sidebar-nav-item {
+  @apply flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200;
+  color: oklch(0.70 0.012 240);
+}
+.sidebar-nav-item:hover {
+  background: oklch(0.18 0.015 240);
+  color: oklch(0.92 0.006 240);
+}
+.sidebar-nav-item.active {
+  background: linear-gradient(135deg, oklch(0.42 0.15 152 / 0.25), oklch(0.45 0.18 240 / 0.15));
+  color: oklch(0.92 0.006 240);
+  box-shadow: inset 0 0 0 1px oklch(0.42 0.15 152 / 0.3);
+}
+.sidebar-nav-item.active .nav-icon {
+  color: oklch(0.65 0.14 152);
+}
+
+/* ─── Stat card accent lines ─────────────────────────────────────────────── */
+.stat-card-green { border-top: 3px solid oklch(0.42 0.15 152); }
+.stat-card-blue  { border-top: 3px solid oklch(0.45 0.18 240); }
+.stat-card-yellow{ border-top: 3px solid oklch(0.85 0.18 90); }
+.stat-card-red   { border-top: 3px solid oklch(0.55 0.22 25); }
+
+/* ─── Table ──────────────────────────────────────────────────────────────── */
+.data-table thead tr {
+  background: oklch(0.94 0.004 240);
+  border-bottom: 1px solid var(--border);
+}
+.data-table tbody tr {
+  border-bottom: 1px solid var(--border);
+  transition: background 150ms var(--ease-out);
+}
+.data-table tbody tr:hover {
+  background: oklch(0.96 0.003 240);
+}
+
+/* ─── Badge status ───────────────────────────────────────────────────────── */
+.badge-active   { @apply bg-green-100 text-green-800 border border-green-200; }
+.badge-returned { @apply bg-blue-100 text-blue-800 border border-blue-200; }
+.badge-overdue  { @apply bg-red-100 text-red-800 border border-red-200; }
+.badge-inactive { @apply bg-gray-100 text-gray-600 border border-gray-200; }
+
+/* ─── Button active scale ────────────────────────────────────────────────── */
+button:active { transform: scale(0.97); }
+
+/* ─── Scrollbar ──────────────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: oklch(0.80 0.008 240); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: oklch(0.65 0.012 240); }
+
+/* ─── Container ──────────────────────────────────────────────────────────── */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+@media (min-width: 640px)  { .container { max-width: 640px; } }
+@media (min-width: 768px)  { .container { max-width: 768px; } }
+@media (min-width: 1024px) { .container { max-width: 1024px; } }
+@media (min-width: 1280px) { .container { max-width: 1280px; } }
+@media (min-width: 1536px) { .container { max-width: 1536px; } }
