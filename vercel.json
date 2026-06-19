@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "vite build",
+  "buildCommand": "esbuild server/_core/app.ts --platform=node --packages=external --bundle --format=esm --outfile=api/app.mjs && vite build",
   "outputDirectory": "dist/public",
   "installCommand": "pnpm install --no-frozen-lockfile",
   "rewrites": [

@@ -1,9 +1,5 @@
-import express from "express";
+import { createApp } from "./app.mjs";
 
-const app = express();
-
-app.all("*", (_req, res) => {
-  res.json({ ok: true, message: "API funcionando" });
-});
+const app = createApp();
 
 export default app;
