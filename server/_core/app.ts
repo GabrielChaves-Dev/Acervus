@@ -1,3 +1,4 @@
+import type { ErrorRequestHandler } from "express";
 import express from "express";
 import { createExpressMiddleware } from "@trpc/server/adapters/express";
 import { registerOAuthRoutes } from "./oauth";
@@ -18,5 +19,11 @@ export function createApp() {
       createContext,
     })
   );
+
+  app.use(((err, _req, res, _next) => {
+    console.error("[API Error]", err);
+    res.status(500).json({ error: String(err?.message || err) });
+  }) as ErrorRequestHandler);
+
   return app;
 }

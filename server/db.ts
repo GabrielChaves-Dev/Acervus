@@ -13,16 +13,23 @@ let _sqlite: Database.Database | null = null;
 
 export function getDb() {
   if (!_db) {
-    const dbPath = ENV.databaseUrl || (process.env.VERCEL
-      ? "/tmp/biblioteca.db"
-      : path.resolve(process.cwd(), "data/biblioteca.db"));
-    fs.mkdirSync(path.dirname(dbPath), { recursive: true });
-    _sqlite = new Database(dbPath);
-    _sqlite.pragma("journal_mode = WAL");
-    _sqlite.pragma("foreign_keys = ON");
-    _db = drizzle(_sqlite);
-    runMigrations();
-    seedIfEmpty();
+    try {
+      const dbPath = ENV.databaseUrl || (process.env.VERCEL
+        ? "/tmp/biblioteca.db"
+        : path.resolve(process.cwd(), "data/biblioteca.db"));
+      console.log(`[DB] Opening database at: ${dbPath}`);
+      fs.mkdirSync(path.dirname(dbPath), { recursive: true });
+      _sqlite = new Database(dbPath);
+      _sqlite.pragma("journal_mode = WAL");
+      _sqlite.pragma("foreign_keys = ON");
+      _db = drizzle(_sqlite);
+      runMigrations();
+      seedIfEmpty();
+      console.log("[DB] Database initialized successfully");
+    } catch (err) {
+      console.error("[DB] Failed to initialize database:", err);
+      throw err;
+    }
   }
   return _db;
 }
