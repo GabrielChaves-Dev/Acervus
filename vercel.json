@@ -5,7 +5,8 @@
   "installCommand": "pnpm install --no-frozen-lockfile",
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api" },
-    { "source": "/(.*)", "destination": "/dist/public/$1" }
+    { "source": "/(.*\\..*)", "destination": "/dist/public/$1" },
+    { "source": "/(.*)", "destination": "/dist/public/index.html" }
   ],
   "functions": {
     "api/index.mjs": {
